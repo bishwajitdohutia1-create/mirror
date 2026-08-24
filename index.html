@@ -23,16 +23,23 @@
     </script>
     <style>
         .glass-card {
-            background: rgba(18, 18, 22, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(18, 18, 22, 0.85);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
         }
         @keyframes pulseGlow {
             0%, 100% { opacity: 0.4; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.05); }
+            50% { opacity: 0.9; transform: scale(1.02); }
         }
         .animate-glow {
             animation: pulseGlow 4s ease-in-out infinite;
+        }
+        @keyframes floatAnim {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .animate-float {
+            animation: floatAnim 5s ease-in-out infinite;
         }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -41,12 +48,12 @@
 <body class="bg-brandDark text-gray-100 min-h-screen flex flex-col font-sans selection:bg-amber-500 selection:text-black">
 
     <!-- Top Navigation Bar -->
-    <header class="border-b border-brandBorder bg-brandDark/90 backdrop-blur-md sticky top-0 z-50 px-6 py-3 flex items-center justify-between">
+    <header class="border-b border-brandBorder bg-brandDark/90 backdrop-blur-md sticky top-0 z-50 px-6 py-3.5 flex items-center justify-between shadow-lg">
         
         <!-- Ultra-Premium Logo -->
-        <div class="flex items-center">
-            <svg width="190" height="48" viewBox="0 0 190 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="24" cy="24" r="21" stroke="url(#ultraGold)" stroke-width="1.5" stroke-opacity="0.25" stroke-dasharray="4 2" />
+        <div class="flex items-center space-x-2">
+            <svg width="170" height="42" viewBox="0 0 190 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="21" stroke="url(#ultraGold)" stroke-width="1.5" stroke-opacity="0.3" stroke-dasharray="4 2" />
                 <path d="M24 4C13.5066 4 5 12.5066 5 23C5 33.4934 13.5066 42 24 42C34.4934 42 43 33.4934 43 23" stroke="url(#ultraGold)" stroke-width="3.5" stroke-linecap="round" />
                 <path d="M24 10C16.8203 10 11 15.8203 11 23C11 30.1797 16.8203 36 24 36C31.1797 36 37 30.1797 37 23" stroke="url(#ultraGold)" stroke-width="2" stroke-linecap="round" stroke-opacity="0.6" />
                 <circle cx="24" cy="23" r="5" fill="url(#ultraGold)" />
@@ -63,15 +70,15 @@
             </svg>
         </div>
         
-        <!-- Live Ticker (No World News) -->
-        <div class="hidden md:flex items-center space-x-2 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full text-xs text-amber-300">
+        <!-- Live Ticker (Animated Status) -->
+        <div class="hidden md:flex items-center space-x-2.5 bg-amber-500/10 border border-amber-500/30 px-4 py-1.5 rounded-full text-xs text-amber-300 animate-pulse">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-            <span>AI Live Synchronizing Global Profiles (Excluding World News)</span>
+            <span>AI Live Synchronizing Global Profiles (No World News)</span>
         </div>
 
         <div class="flex items-center space-x-3">
-            <button onclick="openModal('profileModal')" class="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-brandBorder text-xs font-medium transition">Create Profile</button>
-            <button onclick="openModal('chatModal')" class="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-600 text-black text-xs font-semibold shadow-md hover:opacity-90 transition">Live Chats</button>
+            <button onclick="openModal('profileModal')" class="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-brandBorder text-xs font-medium transition duration-300 hover:border-amber-500/50">Create Profile</button>
+            <button onclick="openModal('chatModal')" class="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-600 text-black text-xs font-semibold shadow-lg hover:opacity-90 transition transform hover:scale-105">Live Chats</button>
         </div>
     </header>
 
@@ -80,52 +87,52 @@
         
         <!-- Left Sidebar: Features & Navigation -->
         <div class="space-y-4 lg:col-span-1">
-            <div class="glass-card p-5 rounded-2xl border border-brandBorder space-y-2">
-                <a href="#liveFeed" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20 text-sm font-medium">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            <div class="glass-card p-5 rounded-2xl border border-brandBorder space-y-2 shadow-xl">
+                <a href="#liveFeed" class="flex items-center space-x-3 px-3.5 py-3 rounded-xl bg-amber-500/15 text-amber-400 border border-amber-500/30 text-sm font-medium transition duration-300">
+                    <svg class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     <span>Live Match Feed</span>
                 </a>
-                <a href="#" onclick="openModal('chatModal')" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white text-sm transition">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                <a href="#" onclick="openModal('chatModal')" class="flex items-center space-x-3 px-3.5 py-3 rounded-xl hover:bg-white/5 text-gray-300 hover:text-white text-sm transition duration-300">
+                    <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
                     <span>Live Chats</span>
                 </a>
-                <a href="#" onclick="openModal('reelsModal')" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white text-sm transition">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                <a href="#" onclick="openModal('reelsModal')" class="flex items-center space-x-3 px-3.5 py-3 rounded-xl hover:bg-white/5 text-gray-300 hover:text-white text-sm transition duration-300">
+                    <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                     <span>Global Reels & Posts</span>
                 </a>
-                <a href="#" onclick="openModal('groupModal')" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white text-sm transition">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                <a href="#" onclick="openModal('groupModal')" class="flex items-center space-x-3 px-3.5 py-3 rounded-xl hover:bg-white/5 text-gray-300 hover:text-white text-sm transition duration-300">
+                    <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
                     <span>Pages & Groups</span>
                 </a>
             </div>
 
             <!-- Instant Connect Widget -->
-            <div class="glass-card p-5 rounded-2xl border border-brandBorder">
-                <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Instant Connect</h4>
+            <div class="glass-card p-5 rounded-2xl border border-brandBorder shadow-xl">
+                <h4 class="text-xs font-semibold text-amber-400 uppercase tracking-wider mb-3">Instant Connect</h4>
                 <div class="grid grid-cols-2 gap-2">
-                    <button onclick="openModal('videoCallModal')" class="py-2.5 px-3 rounded-xl bg-white/5 hover:bg-white/10 border border-brandBorder text-xs font-medium flex items-center justify-center space-x-2 text-amber-300">
+                    <button onclick="openModal('videoCallModal')" class="py-2.5 px-3 rounded-xl bg-white/5 hover:bg-white/10 border border-brandBorder text-xs font-medium flex items-center justify-center space-x-2 text-amber-300 transition duration-300">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                         <span>Video Call</span>
                     </button>
-                    <button onclick="openModal('voiceCallModal')" class="py-2.5 px-3 rounded-xl bg-white/5 hover:bg-white/10 border border-brandBorder text-xs font-medium flex items-center justify-center space-x-2 text-amber-300">
+                    <button onclick="openModal('voiceCallModal')" class="py-2.5 px-3 rounded-xl bg-white/5 hover:bg-white/10 border border-brandBorder text-xs font-medium flex items-center justify-center space-x-2 text-amber-300 transition duration-300">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                         <span>Voice Call</span>
                     </button>
                 </div>
             </div>
 
-            <!-- Founder Section (Dahotiya & Photo) -->
-            <div class="glass-card p-5 rounded-2xl border border-brandBorder text-center relative overflow-hidden">
+            <!-- Founder Section (Fixed with Correct Name & Real Photo) -->
+            <div class="glass-card p-5 rounded-2xl border border-brandBorder text-center relative overflow-hidden shadow-xl animate-float">
                 <div class="absolute top-0 right-0 w-24 h-24 bg-amber-500/10 rounded-full blur-xl pointer-events-none"></div>
-                <div class="w-20 h-20 mx-auto rounded-full p-1 bg-gradient-to-tr from-amber-500 to-yellow-300 mb-3 shadow-lg">
-                    <img src="1000734888.png" alt="Dahotiya" class="w-full h-full object-cover rounded-full">
+                <div class="w-24 h-24 mx-auto rounded-full p-1 bg-gradient-to-tr from-amber-500 to-yellow-300 mb-3 shadow-2xl">
+                    <img src="1000734888.png" alt="Bishwajit Dohutia" class="w-full h-full object-cover rounded-full">
                 </div>
-                <h4 class="text-sm font-semibold text-white">Dahotiya</h4>
-                <p class="text-xs text-amber-400 font-medium mb-2">Founder & Visionary</p>
-                <p class="text-[11px] text-gray-400 font-light leading-relaxed mb-4">
+                <h4 class="text-sm font-bold text-white tracking-wide">Bishwajit Dohutia</h4>
+                <p class="text-xs text-amber-400 font-semibold mb-2">Founder & Visionary</p>
+                <p class="text-[11px] text-gray-300 font-light leading-relaxed mb-4">
                     Creator of Mirror, uniting human souls globally through Chrono-Birth & Facial Synchronization.
                 </p>
-                <button onclick="openModal('founderModal')" class="w-full py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-brandBorder text-xs text-amber-300 font-medium transition">Founder's Note</button>
+                <button onclick="openModal('founderModal')" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-500/20 to-yellow-600/20 hover:from-amber-500/30 hover:to-yellow-600/30 border border-amber-500/30 text-xs text-amber-300 font-medium transition duration-300 shadow-md">Founder's Note</button>
             </div>
         </div>
 
@@ -133,13 +140,13 @@
         <div class="lg:col-span-3 space-y-6">
             
             <!-- Live Status Banner -->
-            <div class="glass-card p-6 rounded-2xl border border-brandBorder flex flex-col md:flex-row justify-between items-center gap-4 relative overflow-hidden">
+            <div class="glass-card p-6 rounded-2xl border border-brandBorder flex flex-col md:flex-row justify-between items-center gap-4 relative overflow-hidden shadow-xl">
                 <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
                 <div>
-                    <h2 class="text-xl font-semibold text-white">AI Global Sync Stream</h2>
+                    <h2 class="text-xl font-bold text-white">AI Global Sync Stream</h2>
                     <p class="text-xs text-gray-400 mt-1 font-light">Real-time matching profiles based on Face Geometry & Chrono-Birth timelines.</p>
                 </div>
-                <div class="flex items-center space-x-2 bg-emerald-500/10 border border-emerald-500/20 px-3.5 py-1.5 rounded-full text-xs text-emerald-400 font-medium">
+                <div class="flex items-center space-x-2 bg-emerald-500/10 border border-emerald-500/30 px-4 py-2 rounded-full text-xs text-emerald-400 font-medium shadow-inner">
                     <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
                     <span id="liveCounter">Live: 1,428 Active Matches</span>
                 </div>
@@ -149,40 +156,40 @@
             <div id="liveFeed" class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 
                 <!-- Match Card 1 -->
-                <div class="glass-card p-5 rounded-2xl border border-brandBorder hover:border-amber-500/40 transition duration-300">
+                <div class="glass-card p-5 rounded-2xl border border-brandBorder hover:border-amber-500/50 transition duration-300 shadow-xl">
                     <div class="flex items-center space-x-4 mb-4">
-                        <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-stone-700 to-stone-500 flex items-center justify-center text-white font-bold text-base">EL</div>
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-stone-700 to-stone-500 flex items-center justify-center text-white font-bold text-base shadow-md">EL</div>
                         <div>
                             <h4 class="text-sm font-semibold text-white">Elena Rostova <span class="text-xs font-normal text-amber-400 ml-1">98.4% Match</span></h4>
                             <p class="text-xs text-gray-400">Vienna, Austria • Chrono-Birth Twin</p>
                         </div>
                     </div>
-                    <div class="bg-black/30 p-3 rounded-xl border border-white/5 text-xs text-gray-300 space-y-1 mb-4">
-                        <div class="flex justify-between"><span>Face Similarity:</span> <span class="text-amber-300">97.1% (AI Verified)</span></div>
-                        <div class="flex justify-between"><span>Exact DOB Match:</span> <span class="text-amber-300">14 Oct 1998</span></div>
+                    <div class="bg-black/40 p-3.5 rounded-xl border border-white/5 text-xs text-gray-300 space-y-1.5 mb-4 shadow-inner">
+                        <div class="flex justify-between"><span>Face Similarity:</span> <span class="text-amber-300 font-medium">97.1% (AI Verified)</span></div>
+                        <div class="flex justify-between"><span>Exact DOB Match:</span> <span class="text-amber-300 font-medium">14 Oct 1998</span></div>
                     </div>
                     <div class="flex space-x-2">
-                        <button onclick="openModal('chatModal')" class="flex-1 py-2 rounded-xl bg-amber-500 text-black text-xs font-semibold hover:opacity-90 transition">Live Chat</button>
-                        <button onclick="openModal('videoCallModal')" class="px-3 py-2 rounded-xl bg-white/5 border border-brandBorder text-xs text-white hover:bg-white/10 transition">Call</button>
+                        <button onclick="openModal('chatModal')" class="flex-1 py-2 rounded-xl bg-amber-500 text-black text-xs font-semibold hover:opacity-90 transition shadow-md">Live Chat</button>
+                        <button onclick="openModal('videoCallModal')" class="px-3.5 py-2 rounded-xl bg-white/5 border border-brandBorder text-xs text-white hover:bg-white/10 transition">Call</button>
                     </div>
                 </div>
 
                 <!-- Match Card 2 -->
-                <div class="glass-card p-5 rounded-2xl border border-brandBorder hover:border-amber-500/40 transition duration-300">
+                <div class="glass-card p-5 rounded-2xl border border-brandBorder hover:border-amber-500/50 transition duration-300 shadow-xl">
                     <div class="flex items-center space-x-4 mb-4">
-                        <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-700 to-amber-900 flex items-center justify-center text-white font-bold text-base">TK</div>
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-700 to-amber-900 flex items-center justify-center text-white font-bold text-base shadow-md">TK</div>
                         <div>
                             <h4 class="text-sm font-semibold text-white">Taro Kael <span class="text-xs font-normal text-amber-400 ml-1">96.8% Match</span></h4>
                             <p class="text-xs text-gray-400">Kyoto, Japan • Facial Geometry Match</p>
                         </div>
                     </div>
-                    <div class="bg-black/30 p-3 rounded-xl border border-white/5 text-xs text-gray-300 space-y-1 mb-4">
-                        <div class="flex justify-between"><span>Face Similarity:</span> <span class="text-amber-300">98.5% (AI Verified)</span></div>
-                        <div class="flex justify-between"><span>Timeline Match:</span> <span class="text-amber-300">Shared Zodiac & Era</span></div>
+                    <div class="bg-black/40 p-3.5 rounded-xl border border-white/5 text-xs text-gray-300 space-y-1.5 mb-4 shadow-inner">
+                        <div class="flex justify-between"><span>Face Similarity:</span> <span class="text-amber-300 font-medium">98.5% (AI Verified)</span></div>
+                        <div class="flex justify-between"><span>Timeline Match:</span> <span class="text-amber-300 font-medium">Shared Zodiac & Era</span></div>
                     </div>
                     <div class="flex space-x-2">
-                        <button onclick="openModal('chatModal')" class="flex-1 py-2 rounded-xl bg-amber-500 text-black text-xs font-semibold hover:opacity-90 transition">Live Chat</button>
-                        <button onclick="openModal('videoCallModal')" class="px-3 py-2 rounded-xl bg-white/5 border border-brandBorder text-xs text-white hover:bg-white/10 transition">Call</button>
+                        <button onclick="openModal('chatModal')" class="flex-1 py-2 rounded-xl bg-amber-500 text-black text-xs font-semibold hover:opacity-90 transition shadow-md">Live Chat</button>
+                        <button onclick="openModal('videoCallModal')" class="px-3.5 py-2 rounded-xl bg-white/5 border border-brandBorder text-xs text-white hover:bg-white/10 transition">Call</button>
                     </div>
                 </div>
 
@@ -193,105 +200,105 @@
     <!-- Modals Section -->
 
     <!-- Profile Creation Modal -->
-    <div id="profileModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
-        <div class="glass-card max-w-md w-full p-6 rounded-2xl border border-brandBorder relative">
-            <button onclick="closeModal('profileModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white">&times;</button>
-            <h3 class="text-lg font-medium text-white mb-4">Create Synchronized Profile</h3>
+    <div id="profileModal" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+        <div class="glass-card max-w-md w-full p-6 rounded-2xl border border-brandBorder relative shadow-2xl">
+            <button onclick="closeModal('profileModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">&times;</button>
+            <h3 class="text-lg font-bold text-white mb-4">Create Synchronized Profile</h3>
             <div class="space-y-3">
-                <input type="text" placeholder="Full Name" class="w-full bg-black/40 border border-brandBorder rounded-xl px-4 py-2.5 text-xs text-white">
-                <input type="date" class="w-full bg-black/40 border border-brandBorder rounded-xl px-4 py-2.5 text-xs text-white">
+                <input type="text" placeholder="Full Name" class="w-full bg-black/40 border border-brandBorder rounded-xl px-4 py-2.5 text-xs text-white focus:border-amber-500 outline-none">
+                <input type="date" class="w-full bg-black/40 border border-brandBorder rounded-xl px-4 py-2.5 text-xs text-white focus:border-amber-500 outline-none">
                 <input type="file" class="w-full bg-black/40 border border-brandBorder rounded-xl p-2.5 text-xs text-gray-400">
-                <button onclick="alert('Profile saved & AI facial sync initialized!'); closeModal('profileModal');" class="w-full py-2.5 rounded-xl bg-amber-500 text-black font-semibold text-xs mt-2">Save & Run AI Match</button>
+                <button onclick="alert('Profile saved & AI facial sync initialized!'); closeModal('profileModal');" class="w-full py-2.5 rounded-xl bg-amber-500 text-black font-semibold text-xs mt-2 shadow-lg">Save & Run AI Match</button>
             </div>
         </div>
     </div>
 
     <!-- Live Chat Modal -->
-    <div id="chatModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
-        <div class="glass-card max-w-lg w-full p-6 rounded-2xl border border-brandBorder relative flex flex-col h-[400px]">
-            <button onclick="closeModal('chatModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white">&times;</button>
-            <h3 class="text-base font-medium text-white mb-3">Live Global Friendship Chat</h3>
-            <div class="flex-1 bg-black/40 border border-brandBorder rounded-xl p-3 overflow-y-auto space-y-2 text-xs">
-                <div class="bg-white/5 p-2 rounded-lg max-w-[80%]">Elena: Hello! Our birth timeline matches perfectly!</div>
-                <div class="bg-amber-500/20 text-amber-200 p-2 rounded-lg max-w-[80%] ml-auto">You: Hi Elena! Amazing to connect globally.</div>
+    <div id="chatModal" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+        <div class="glass-card max-w-lg w-full p-6 rounded-2xl border border-brandBorder relative flex flex-col h-[420px] shadow-2xl">
+            <button onclick="closeModal('chatModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">&times;</button>
+            <h3 class="text-base font-bold text-white mb-3">Live Global Friendship Chat</h3>
+            <div class="flex-1 bg-black/40 border border-brandBorder rounded-xl p-3 overflow-y-auto space-y-2.5 text-xs">
+                <div class="bg-white/5 p-2.5 rounded-xl max-w-[80%] border border-white/5">Elena: Hello! Our birth timeline matches perfectly!</div>
+                <div class="bg-amber-500/20 text-amber-200 p-2.5 rounded-xl max-w-[80%] ml-auto border border-amber-500/20">You: Hi Elena! Amazing to connect globally.</div>
             </div>
             <div class="mt-3 flex space-x-2">
-                <input type="text" placeholder="Type a message..." class="flex-1 bg-black/40 border border-brandBorder rounded-xl px-4 py-2 text-xs text-white">
-                <button onclick="alert('Message sent live!')" class="px-4 py-2 rounded-xl bg-amber-500 text-black text-xs font-semibold">Send</button>
+                <input type="text" placeholder="Type a message..." class="flex-1 bg-black/40 border border-brandBorder rounded-xl px-4 py-2.5 text-xs text-white focus:border-amber-500 outline-none">
+                <button onclick="alert('Message sent live!')" class="px-4 py-2.5 rounded-xl bg-amber-500 text-black text-xs font-semibold shadow-md">Send</button>
             </div>
         </div>
     </div>
 
     <!-- Video Call Modal -->
-    <div id="videoCallModal" class="fixed inset-0 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 z-50">
-        <div class="glass-card max-w-md w-full p-6 rounded-2xl border border-brandBorder text-center relative">
-            <button onclick="closeModal('videoCallModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white">&times;</button>
-            <div class="w-24 h-24 mx-auto rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center mb-4 animate-glow">
+    <div id="videoCallModal" class="fixed inset-0 bg-black/90 backdrop-blur-lg hidden items-center justify-center p-4 z-50">
+        <div class="glass-card max-w-md w-full p-6 rounded-2xl border border-brandBorder text-center relative shadow-2xl">
+            <button onclick="closeModal('videoCallModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">&times;</button>
+            <div class="w-24 h-24 mx-auto rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center mb-4 animate-glow shadow-xl">
                 <svg class="w-10 h-10 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
             </div>
-            <h3 class="text-lg font-semibold text-white mb-1">Encrypted Video Link</h3>
+            <h3 class="text-lg font-bold text-white mb-1">Encrypted Video Link</h3>
             <p class="text-xs text-gray-400 mb-6">Establishing P2P connection with synchronized match...</p>
-            <button onclick="closeModal('videoCallModal')" class="w-full py-2.5 rounded-xl bg-red-600 text-white font-semibold text-xs">End Call</button>
+            <button onclick="closeModal('videoCallModal')" class="w-full py-2.5 rounded-xl bg-red-600 text-white font-semibold text-xs shadow-lg">End Call</button>
         </div>
     </div>
 
     <!-- Voice Call Modal -->
-    <div id="voiceCallModal" class="fixed inset-0 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 z-50">
-        <div class="glass-card max-w-md w-full p-6 rounded-2xl border border-brandBorder text-center relative">
-            <button onclick="closeModal('voiceCallModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white">&times;</button>
-            <div class="w-24 h-24 mx-auto rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center mb-4 animate-glow">
+    <div id="voiceCallModal" class="fixed inset-0 bg-black/90 backdrop-blur-lg hidden items-center justify-center p-4 z-50">
+        <div class="glass-card max-w-md w-full p-6 rounded-2xl border border-brandBorder text-center relative shadow-2xl">
+            <button onclick="closeModal('voiceCallModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">&times;</button>
+            <div class="w-24 h-24 mx-auto rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center mb-4 animate-glow shadow-xl">
                 <svg class="w-10 h-10 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
             </div>
-            <h3 class="text-lg font-semibold text-white mb-1">Secure Voice Line</h3>
+            <h3 class="text-lg font-bold text-white mb-1">Secure Voice Line</h3>
             <p class="text-xs text-gray-400 mb-6">Ringing global synchronized partner...</p>
-            <button onclick="closeModal('voiceCallModal')" class="w-full py-2.5 rounded-xl bg-red-600 text-white font-semibold text-xs">Hang Up</button>
+            <button onclick="closeModal('voiceCallModal')" class="w-full py-2.5 rounded-xl bg-red-600 text-white font-semibold text-xs shadow-lg">Hang Up</button>
         </div>
     </div>
 
     <!-- Global Reels Modal -->
-    <div id="reelsModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
-        <div class="glass-card max-w-md w-full p-6 rounded-2xl border border-brandBorder relative text-center">
-            <button onclick="closeModal('reelsModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white">&times;</button>
-            <h3 class="text-lg font-semibold text-white mb-2">Global Reels & Posts</h3>
+    <div id="reelsModal" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+        <div class="glass-card max-w-md w-full p-6 rounded-2xl border border-brandBorder relative text-center shadow-2xl">
+            <button onclick="closeModal('reelsModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">&times;</button>
+            <h3 class="text-lg font-bold text-white mb-2">Global Reels & Posts</h3>
             <p class="text-xs text-gray-400 mb-4">Explore short video reflections from your synced community.</p>
-            <div class="bg-black/50 p-6 rounded-xl border border-white/5 text-xs text-amber-300 mb-4">🎥 [Live Reel Stream Feed Active]</div>
-            <button onclick="closeModal('reelsModal')" class="w-full py-2.5 rounded-xl bg-amber-500 text-black font-semibold text-xs">Close</button>
+            <div class="bg-black/50 p-6 rounded-xl border border-white/5 text-xs text-amber-300 mb-4 shadow-inner">🎥 [Live Reel Stream Feed Active]</div>
+            <button onclick="closeModal('reelsModal')" class="w-full py-2.5 rounded-xl bg-amber-500 text-black font-semibold text-xs shadow-md">Close</button>
         </div>
     </div>
 
     <!-- Pages & Groups Modal -->
-    <div id="groupModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
-        <div class="glass-card max-w-md w-full p-6 rounded-2xl border border-brandBorder relative">
-            <button onclick="closeModal('groupModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white">&times;</button>
-            <h3 class="text-lg font-semibold text-white mb-3">Pages & Groups</h3>
+    <div id="groupModal" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+        <div class="glass-card max-w-md w-full p-6 rounded-2xl border border-brandBorder relative shadow-2xl">
+            <button onclick="closeModal('groupModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">&times;</button>
+            <h3 class="text-lg font-bold text-white mb-3">Pages & Groups</h3>
             <p class="text-xs text-gray-400 mb-4">Join communities based on shared cosmic and facial geometry traits.</p>
             <div class="space-y-2 text-left mb-4">
                 <div class="bg-white/5 p-3 rounded-xl border border-brandBorder text-xs flex justify-between items-center">
                     <span>Chrono-Birth Pioneers</span>
-                    <button onclick="alert('Joined group!')" class="px-3 py-1 rounded-lg bg-amber-500 text-black font-semibold">Join</button>
+                    <button onclick="alert('Joined group!')" class="px-3 py-1 rounded-lg bg-amber-500 text-black font-semibold shadow-sm">Join</button>
                 </div>
                 <div class="bg-white/5 p-3 rounded-xl border border-brandBorder text-xs flex justify-between items-center">
                     <span>Facial Mirror Alliance</span>
-                    <button onclick="alert('Joined group!')" class="px-3 py-1 rounded-lg bg-amber-500 text-black font-semibold">Join</button>
+                    <button onclick="alert('Joined group!')" class="px-3 py-1 rounded-lg bg-amber-500 text-black font-semibold shadow-sm">Join</button>
                 </div>
             </div>
             <button onclick="closeModal('groupModal')" class="w-full py-2.5 rounded-xl bg-white/5 border border-brandBorder text-xs text-white">Close</button>
         </div>
     </div>
 
-    <!-- Founder's Note Modal (Dahotiya) -->
-    <div id="founderModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
-        <div class="glass-card max-w-md w-full p-6 rounded-2xl border border-brandBorder relative text-center">
-            <button onclick="closeModal('founderModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white">&times;</button>
-            <div class="w-20 h-20 mx-auto rounded-full p-1 bg-gradient-to-tr from-amber-500 to-yellow-300 mb-3 shadow-lg">
-                <img src="1000734888.png" alt="Dahotiya" class="w-full h-full object-cover rounded-full">
+    <!-- Founder's Note Modal (Bishwajit Dohutia & Photo) -->
+    <div id="founderModal" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+        <div class="glass-card max-w-md w-full p-6 rounded-2xl border border-brandBorder relative text-center shadow-2xl">
+            <button onclick="closeModal('founderModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">&times;</button>
+            <div class="w-20 h-20 mx-auto rounded-full p-1 bg-gradient-to-tr from-amber-500 to-yellow-300 mb-3 shadow-xl">
+                <img src="1000734888.png" alt="Bishwajit Dohutia" class="w-full h-full object-cover rounded-full">
             </div>
-            <h3 class="text-lg font-semibold text-white">Message from the Founder</h3>
-            <p class="text-xs text-amber-400 mb-4">Dahotiya • Creator of Mirror</p>
+            <h3 class="text-lg font-bold text-white">Message from the Founder</h3>
+            <p class="text-xs text-amber-400 font-medium mb-4">Bishwajit Dohutia • Creator of Mirror</p>
             <p class="text-xs text-gray-300 font-light leading-relaxed mb-6">
                 "Mirror was built with a singular vision: to eliminate the noise of the traditional internet and connect human beings purely based on the cosmic and structural mirrors of life—our exact birth timelines and facial geometry. Welcome to the future of genuine global synchronization."
             </p>
-            <button onclick="closeModal('founderModal')" class="w-full py-2.5 rounded-xl bg-amber-500 text-black font-semibold text-xs">Close</button>
+            <button onclick="closeModal('founderModal')" class="w-full py-2.5 rounded-xl bg-amber-500 text-black font-semibold text-xs shadow-md">Close</button>
         </div>
     </div>
 
