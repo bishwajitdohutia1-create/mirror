@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mirror - Global Live Human Synchronization</title>
+    <title>Mirror - Ultra Premium Global Synchronization</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -12,398 +12,361 @@
             theme: {
                 extend: {
                     colors: {
-                        brandDark: '#070709',
-                        brandCard: '#121216',
-                        brandBorder: '#22222B',
-                        brandGold: '#D4AF37',
+                        darkBg: '#080B11',
+                        cardBg: '#111827',
+                        borderCol: '#1F2937',
+                        goldAccent: '#D4AF37',
+                        goldLight: '#F3E5AB'
                     }
                 }
             }
         }
     </script>
     <style>
-        .glass-card {
-            background: rgba(18, 18, 22, 0.85);
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.75);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-        }
-        @keyframes pulseGlow {
-            0%, 100% { opacity: 0.35; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.03); }
-        }
-        .animate-glow {
-            animation: pulseGlow 4s ease-in-out infinite;
+            border: 1px solid rgba(212, 175, 55, 0.2);
         }
         @keyframes floatAnim {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-4px); }
+            50% { transform: translateY(-6px); }
         }
-        .animate-float {
-            animation: floatAnim 5s ease-in-out infinite;
-        }
+        .animate-float { animation: floatAnim 5s ease-in-out infinite; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="bg-brandDark text-gray-100 min-h-screen flex flex-col font-sans selection:bg-amber-500 selection:text-black">
+<body class="bg-darkBg text-gray-100 min-h-screen flex flex-col font-sans selection:bg-goldAccent selection:text-black">
 
     <!-- Top Navigation Bar -->
-    <header class="border-b border-brandBorder bg-brandDark/90 backdrop-blur-md sticky top-0 z-50 px-6 py-3.5 flex items-center justify-between shadow-lg">
+    <header class="border-b border-borderCol bg-darkBg/90 backdrop-blur-xl sticky top-0 z-50 px-8 py-5 flex items-center justify-between shadow-2xl">
         
-        <!-- Ultra-Premium Logo -->
-        <div class="flex items-center space-x-2">
-            <svg width="170" height="42" viewBox="0 0 190 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="24" cy="24" r="21" stroke="url(#ultraGold)" stroke-width="1.5" stroke-opacity="0.3" stroke-dasharray="4 2" />
-                <path d="M24 4C13.5066 4 5 12.5066 5 23C5 33.4934 13.5066 42 24 42C34.4934 42 43 33.4934 43 23" stroke="url(#ultraGold)" stroke-width="3.5" stroke-linecap="round" />
-                <path d="M24 10C16.8203 10 11 15.8203 11 23C11 30.1797 16.8203 36 24 36C31.1797 36 37 30.1797 37 23" stroke="url(#ultraGold)" stroke-width="2" stroke-linecap="round" stroke-opacity="0.6" />
-                <circle cx="24" cy="23" r="5" fill="url(#ultraGold)" />
-                <circle cx="24" cy="23" r="2" fill="#070709" />
-                <text x="56" y="31" fill="white" font-family="system-ui, -apple-system, sans-serif" font-size="23" font-weight="800" letter-spacing="1">Mir<tspan fill="url(#ultraGold)">ror</tspan></text>
+        <!-- Brand Logo & Name -->
+        <div class="flex items-center space-x-3">
+            <svg width="45" height="45" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="animate-float">
+                <circle cx="50" cy="50" r="45" stroke="url(#goldGrad)" stroke-width="6" stroke-dasharray="8 6"/>
+                <circle cx="50" cy="50" r="30" stroke="url(#goldGrad)" stroke-width="8"/>
+                <circle cx="50" cy="50" r="10" fill="url(#goldGrad)"/>
                 <defs>
-                    <linearGradient id="ultraGold" x1="5" y1="4" x2="43" y2="42" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#FFF5CC" />
-                        <stop offset="0.35" stop-color="#E6C687" />
-                        <stop offset="0.7" stop-color="#D4AF37" />
-                        <stop offset="1" stop-color="#996515" />
+                    <linearGradient id="goldGrad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#FFF5CC"/>
+                        <stop offset="1" stop-color="#D4AF37"/>
                     </linearGradient>
                 </defs>
             </svg>
+            <span class="text-3xl font-black tracking-wider text-white">Mir<span class="text-goldAccent">ror</span></span>
         </div>
         
-        <!-- Live Status Ticker -->
-        <div class="hidden md:flex items-center space-x-2.5 bg-amber-500/10 border border-amber-500/30 px-4 py-1.5 rounded-full text-xs text-amber-300">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-            <span>AI Live Synchronizing Global Profiles (Excluding News Feed)</span>
+        <!-- Live Global Status Ticker -->
+        <div class="hidden md:flex items-center space-x-3 bg-cardBg border border-goldAccent/30 px-6 py-2 rounded-full text-sm font-semibold text-goldLight shadow-inner">
+            <span class="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></span>
+            <span>AI Live Global Synchronization Active</span>
         </div>
 
-        <div class="flex items-center space-x-3">
-            <button onclick="openModal('profileModal')" class="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-brandBorder text-xs font-medium transition duration-300 hover:border-amber-500/50">Create Profile</button>
-            <button onclick="openModal('chatModal')" class="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-600 text-black text-xs font-semibold shadow-lg hover:opacity-90 transition transform hover:scale-105">Live Chats</button>
+        <!-- Right Header Actions -->
+        <div class="flex items-center space-x-4">
+            <button onclick="openModal('settingsModal')" class="p-3 rounded-xl bg-cardBg hover:bg-gray-800 border border-borderCol text-gray-300 hover:text-white transition">⚙️ Settings</button>
+            <button onclick="openModal('chatModal')" class="px-6 py-3 rounded-xl bg-gradient-to-r from-goldAccent to-yellow-600 text-black text-sm font-bold shadow-lg hover:opacity-90 transition transform hover:scale-105">Live Chats</button>
         </div>
     </header>
 
     <!-- Main Layout Container -->
-    <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-4 gap-6">
+    <main class="flex-1 max-w-[1700px] w-full mx-auto p-6 md:p-10 grid grid-cols-1 lg:grid-cols-4 gap-8">
         
-        <!-- Left Column: Navigation & Search Friends -->
-        <div class="space-y-5 lg:col-span-1">
+        <!-- Left Sidebar: Navigation & Friend Requests -->
+        <div class="space-y-6 lg:col-span-1">
             
-            <!-- Navigation Links -->
-            <div class="glass-card p-4 rounded-2xl border border-brandBorder space-y-1.5 shadow-xl">
-                <a href="#liveFeed" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl bg-amber-500/15 text-amber-400 border border-amber-500/30 text-sm font-medium">
-                    <svg class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                    <span>Live Match Feed</span>
+            <!-- Navigation Menu (Large & Modern) -->
+            <div class="glass-panel p-6 rounded-3xl space-y-3 shadow-2xl">
+                <a href="#liveFeed" class="flex items-center space-x-4 px-5 py-4 rounded-2xl bg-goldAccent/15 text-goldAccent border border-goldAccent/30 text-base font-bold transition">
+                    <span>📡</span>
+                    <span>Live Sync Feed</span>
                 </a>
-                <a href="#" onclick="openModal('chatModal')" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-white/5 text-gray-300 hover:text-white text-sm transition">
-                    <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-                    <span>Live Chats</span>
+                <a href="#" onclick="openModal('reelsModal')" class="flex items-center space-x-4 px-5 py-4 rounded-2xl hover:bg-cardBg text-gray-300 hover:text-white text-base font-semibold transition">
+                    <span>⚡</span>
+                    <span>Reels & Video Stream</span>
                 </a>
-                <a href="#" onclick="openModal('reelsModal')" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-white/5 text-gray-300 hover:text-white text-sm transition">
-                    <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-                    <span>Global Reels & Posts</span>
+                <a href="#" onclick="openModal('groupModal')" class="flex items-center space-x-4 px-5 py-4 rounded-2xl hover:bg-cardBg text-gray-300 hover:text-white text-base font-semibold transition">
+                    <span>👥</span>
+                    <span>Communities & Groups</span>
                 </a>
-                <a href="#" onclick="openModal('groupModal')" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-white/5 text-gray-300 hover:text-white text-sm transition">
-                    <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-                    <span>Pages & Groups</span>
+                <a href="#" onclick="openModal('pageModal')" class="flex items-center space-x-4 px-5 py-4 rounded-2xl hover:bg-cardBg text-gray-300 hover:text-white text-base font-semibold transition">
+                    <span>🌐</span>
+                    <span>Create Official Page</span>
                 </a>
             </div>
 
-            <!-- Functional Search & Add Friend Section -->
-            <div class="glass-card p-5 rounded-2xl border border-brandBorder shadow-xl space-y-4">
+            <!-- Interactive Friend Search & Management Section -->
+            <div class="glass-panel p-6 rounded-3xl shadow-2xl space-y-4">
                 <div class="flex items-center justify-between">
-                    <h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider">Find & Sync Friends</h4>
-                    <span class="text-[10px] text-gray-400 bg-white/5 px-2 py-0.5 rounded-md border border-white/5">Instant</span>
+                    <h4 class="text-sm font-bold text-goldAccent uppercase tracking-wide">Find & Add Friends</h4>
+                    <span class="text-xs text-gray-400 bg-black/40 px-2.5 py-1 rounded-md border border-white/10">Interactive</span>
                 </div>
                 
-                <!-- Search Input Bar -->
+                <!-- Search Bar -->
                 <div class="relative">
-                    <input type="text" id="friendSearchInput" onkeyup="searchFriends()" placeholder="Search by name or city..." class="w-full bg-black/50 border border-brandBorder rounded-xl pl-9 pr-3 py-2 text-xs text-white placeholder-gray-500 focus:border-amber-500 focus:outline-none transition">
-                    <svg class="w-4 h-4 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    <input type="text" id="friendSearchInput" onkeyup="searchFriends()" placeholder="Search name or city..." class="w-full bg-black/60 border border-borderCol rounded-2xl pl-10 pr-4 py-3 text-sm text-white placeholder-gray-500 focus:border-goldAccent focus:outline-none transition">
+                    <span class="absolute left-3.5 top-3.5 text-gray-400">🔍</span>
                 </div>
 
-                <!-- Suggested Friends List -->
-                <div id="friendListContainer" class="space-y-2.5 max-h-60 overflow-y-auto no-scrollbar">
+                <!-- Friend List with Add / Accept / Reject buttons -->
+                <div id="friendListContainer" class="space-y-3 max-h-72 overflow-y-auto no-scrollbar">
                     
-                    <div class="friend-item flex items-center justify-between p-2 rounded-xl bg-white/5 border border-white/5 hover:border-brandBorder transition" data-name="Sophia Lindqvist" data-loc="Stockholm">
-                        <div class="flex items-center space-x-2.5">
-                            <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-amber-600 to-yellow-400 text-black font-bold flex items-center justify-center text-xs">SL</div>
+                    <div class="friend-item flex items-center justify-between p-3 rounded-2xl bg-cardBg border border-borderCol transition" data-name="Sophia Lindqvist" data-loc="Stockholm">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-600 to-yellow-400 text-black font-bold flex items-center justify-center text-sm shadow">SL</div>
                             <div>
-                                <h5 class="text-xs font-semibold text-white leading-tight">Sophia L.</h5>
-                                <p class="text-[10px] text-gray-400">Stockholm • 96% Match</p>
+                                <h5 class="text-sm font-bold text-white">Sophia Lindqvist</h5>
+                                <p class="text-xs text-gray-400">Stockholm • 96% Match</p>
                             </div>
                         </div>
-                        <button onclick="toggleFriend(this)" class="px-2.5 py-1 rounded-lg bg-amber-500 text-black text-[11px] font-semibold hover:opacity-90 transition">+ Add</button>
+                        <div class="flex space-x-1.5" id="action-btn-1">
+                            <button onclick="handleFriendAction(this, 'add')" class="px-3 py-1.5 rounded-xl bg-goldAccent text-black text-xs font-bold hover:opacity-90 transition">+ Add</button>
+                        </div>
                     </div>
 
-                    <div class="friend-item flex items-center justify-between p-2 rounded-xl bg-white/5 border border-white/5 hover:border-brandBorder transition" data-name="Marco Silva" data-loc="Lisbon">
-                        <div class="flex items-center space-x-2.5">
-                            <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-stone-600 to-stone-400 text-white font-bold flex items-center justify-center text-xs">MS</div>
+                    <div class="friend-item flex items-center justify-between p-3 rounded-2xl bg-cardBg border border-borderCol transition" data-name="Marco Silva" data-loc="Lisbon">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-stone-600 to-stone-400 text-white font-bold flex items-center justify-center text-sm shadow">MS</div>
                             <div>
-                                <h5 class="text-xs font-semibold text-white leading-tight">Marco Silva</h5>
-                                <p class="text-[10px] text-gray-400">Lisbon • 94% Match</p>
+                                <h5 class="text-sm font-bold text-white">Marco Silva</h5>
+                                <p class="text-xs text-gray-400">Lisbon • 94% Match</p>
                             </div>
                         </div>
-                        <button onclick="toggleFriend(this)" class="px-2.5 py-1 rounded-lg bg-amber-500 text-black text-[11px] font-semibold hover:opacity-90 transition">+ Add</button>
-                    </div>
-
-                    <div class="friend-item flex items-center justify-between p-2 rounded-xl bg-white/5 border border-white/5 hover:border-brandBorder transition" data-name="Aarav Sharma" data-loc="Mumbai">
-                        <div class="flex items-center space-x-2.5">
-                            <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-amber-700 to-amber-900 text-white font-bold flex items-center justify-center text-xs">AS</div>
-                            <div>
-                                <h5 class="text-xs font-semibold text-white leading-tight">Aarav S.</h5>
-                                <p class="text-[10px] text-gray-400">Mumbai • 99% Match</p>
-                            </div>
+                        <div class="flex space-x-1.5" id="action-btn-2">
+                            <button onclick="handleFriendAction(this, 'accept')" class="px-2.5 py-1.5 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-500 transition">Accept</button>
+                            <button onclick="handleFriendAction(this, 'reject')" class="px-2.5 py-1.5 rounded-xl bg-red-600/80 text-white text-xs font-bold hover:bg-red-500 transition">Reject</button>
                         </div>
-                        <button onclick="toggleFriend(this)" class="px-2.5 py-1 rounded-lg bg-amber-500 text-black text-[11px] font-semibold hover:opacity-90 transition">+ Add</button>
                     </div>
 
                 </div>
             </div>
 
-            <!-- Quantum Core Badge -->
-            <div class="glass-card p-5 rounded-2xl border border-brandBorder text-center relative overflow-hidden shadow-xl animate-float">
-                <div class="w-14 h-14 mx-auto mb-3 flex items-center justify-center">
-                    <svg width="56" height="56" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="50" cy="50" r="45" stroke="url(#badgeGold)" stroke-width="2" stroke-dasharray="4 3" opacity="0.5"/>
-                        <circle cx="50" cy="50" r="30" stroke="url(#badgeGold)" stroke-width="3"/>
-                        <circle cx="50" cy="50" r="10" fill="url(#badgeGold)"/>
-                        <defs>
-                            <linearGradient id="badgeGold" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
-                                <stop stop-color="#FFF2CC"/>
-                                <stop offset="0.5" stop-color="#D4AF37"/>
-                                <stop offset="1" stop-color="#AA771C"/>
-                            </linearGradient>
-                        </defs>
-                    </svg>
+            <!-- Founder Section (Bishwajit Dohutia) -->
+            <div class="glass-panel p-6 rounded-3xl text-center relative overflow-hidden shadow-2xl animate-float">
+                <div class="w-20 h-20 mx-auto mb-3 rounded-full p-1 bg-gradient-to-tr from-goldAccent to-yellow-200 shadow-xl flex items-center justify-center text-black font-black text-xl">
+                    BD
                 </div>
-                <h4 class="text-xs font-bold text-white uppercase tracking-wider">Quantum AI Core</h4>
-                <p class="text-[11px] text-gray-400 font-light mt-1">Facial Vectors & Chrono Timelines encrypted end-to-end.</p>
+                <h4 class="text-base font-extrabold text-white">Bishwajit Dohutia</h4>
+                <p class="text-xs text-goldAccent font-semibold mb-2">Founder & Chief Visionary</p>
+                <p class="text-xs text-gray-300 font-light leading-relaxed mb-4">
+                    Architecting global human synchronization through precise chronological and facial mapping.
+                </p>
+                <button onclick="openModal('founderModal')" class="w-full py-2.5 rounded-xl bg-goldAccent/20 border border-goldAccent/30 text-goldLight text-xs font-bold transition">Founder's Note</button>
             </div>
 
         </div>
 
-        <!-- Center Feed & Post Creation Section -->
-        <div class="lg:col-span-3 space-y-6">
+        <!-- Center Column: Post Creation, Feed, Live Streaming Actions -->
+        <div class="lg:col-span-3 space-y-8">
             
-            <!-- Live Status Banner -->
-            <div class="glass-card p-6 rounded-2xl border border-brandBorder flex flex-col md:flex-row justify-between items-center gap-4 relative overflow-hidden shadow-xl">
-                <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <!-- Live Status & Instant Direct Live Broadcasting Banner -->
+            <div class="glass-panel p-8 rounded-3xl flex flex-col md:flex-row justify-between items-center gap-6 shadow-2xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-52 h-52 bg-goldAccent/10 rounded-full blur-3xl pointer-events-none"></div>
                 <div>
-                    <h2 class="text-xl font-bold text-white">AI Global Sync Stream</h2>
-                    <p class="text-xs text-gray-400 mt-1 font-light">Real-time matching profiles based on Face Geometry & Chrono-Birth timelines.</p>
+                    <h2 class="text-2xl font-black text-white">AI Global Sync Stream</h2>
+                    <p class="text-sm text-gray-300 mt-1 font-light">Broadcast live, share high-definition reels, and connect seamlessly worldwide.</p>
                 </div>
-                <div class="flex items-center space-x-2 bg-emerald-500/10 border border-emerald-500/30 px-4 py-2 rounded-full text-xs text-emerald-400 font-medium shadow-inner">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                    <span id="liveCounter">Live: 1,428 Active Matches</span>
-                </div>
-            </div>
-
-            <!-- Create Post & Upload Reels Action Box -->
-            <div class="glass-card p-5 rounded-2xl border border-brandBorder shadow-xl space-y-3">
-                <div class="flex justify-between items-center">
-                    <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider">Share a Thought or Global Reel</h3>
-                    <button onclick="openModal('reelsModal')" class="text-[11px] bg-white/5 hover:bg-white/10 border border-brandBorder px-3 py-1.5 rounded-xl text-amber-300 font-medium transition flex items-center space-x-1">
-                        <span>📹 Open Reels Feed</span>
+                <div class="flex items-center space-x-3">
+                    <button onclick="openModal('liveStreamModal')" class="px-6 py-3 rounded-2xl bg-red-600 hover:bg-red-500 text-white text-sm font-bold shadow-lg transition flex items-center space-x-2 animate-pulse">
+                        <span>🔴</span>
+                        <span>Go Live Now</span>
                     </button>
                 </div>
-                <textarea id="userPostInput" rows="3" placeholder="What's on your mind regarding your facial or timeline match today?" class="w-full bg-black/50 border border-brandBorder rounded-xl p-3 text-xs text-white placeholder-gray-500 focus:border-amber-500 focus:outline-none transition resize-none"></textarea>
-                <div class="flex justify-between items-center">
-                    <span class="text-[11px] text-gray-400">Visible to global matched peers</span>
-                    <button onclick="createNewPost()" class="px-5 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-600 text-black text-xs font-semibold shadow-md hover:opacity-90 transition">Publish Post</button>
+            </div>
+
+            <!-- Create Post Box (Modern & Spacious) -->
+            <div class="glass-panel p-8 rounded-3xl shadow-2xl space-y-4">
+                <h3 class="text-base font-bold text-goldAccent uppercase tracking-wide">Create Publication / Post</h3>
+                <textarea id="userPostInput" rows="4" placeholder="What's happening across your synchronization timeline today?" class="w-full bg-black/60 border border-borderCol rounded-2xl p-4 text-sm text-white placeholder-gray-500 focus:border-goldAccent focus:outline-none transition resize-none"></textarea>
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-4 pt-2">
+                    <div class="flex space-x-3 text-xs text-gray-400">
+                        <button onclick="openModal('liveStreamModal')" class="hover:text-goldAccent transition">📹 Live Video</button>
+                        <button onclick="openModal('reelsModal')" class="hover:text-goldAccent transition">⚡ Add Reel</button>
+                        <button onclick="openModal('pageModal')" class="hover:text-goldAccent transition">🌐 Create Page</button>
+                    </div>
+                    <button onclick="createNewPost()" class="px-8 py-3 rounded-2xl bg-gradient-to-r from-goldAccent to-yellow-600 text-black text-sm font-extrabold shadow-lg hover:opacity-90 transition">Publish Post</button>
                 </div>
             </div>
 
-            <!-- Live Matches & Posts Grid -->
-            <div id="liveFeed" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Live Matches & Post Stream Feed -->
+            <div id="liveFeed" class="space-y-6">
                 
-                <!-- Dynamic User Posts Appended Here -->
-                <div id="customPostsWrapper" class="contents"></div>
+                <div id="customPostsWrapper" class="space-y-6"></div>
 
-                <!-- Match Card 1 -->
-                <div class="glass-card p-5 rounded-2xl border border-brandBorder hover:border-amber-500/50 transition duration-300 shadow-xl space-y-4">
-                    <div class="flex items-center space-x-4">
-                        <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-stone-700 to-stone-500 flex items-center justify-center text-white font-bold text-base shadow-md">EL</div>
-                        <div>
-                            <h4 class="text-sm font-semibold text-white">Elena Rostova <span class="text-xs font-normal text-amber-400 ml-1">98.4% Match</span></h4>
-                            <p class="text-xs text-gray-400">Vienna, Austria • Chrono-Birth Twin</p>
-                        </div>
-                    </div>
-                    <div class="bg-black/40 p-3.5 rounded-xl border border-white/5 text-xs text-gray-300 space-y-1.5 shadow-inner">
-                        <div class="flex justify-between"><span>Face Similarity:</span> <span class="text-amber-300 font-medium">97.1% (AI Verified)</span></div>
-                        <div class="flex justify-between"><span>Exact DOB Match:</span> <span class="text-amber-300 font-medium">14 Oct 1998</span></div>
-                    </div>
-                    <!-- Like, Dislike, Comment Interactions -->
-                    <div class="border-t border-brandBorder pt-3 space-y-3">
-                        <div class="flex items-center justify-between text-xs text-gray-400">
-                            <div class="flex space-x-4">
-                                <button onclick="handleLike(this)" class="hover:text-amber-400 transition flex items-center space-x-1">👍 <span class="like-count">124</span></button>
-                                <button onclick="handleDislike(this)" class="hover:text-red-400 transition flex items-center space-x-1">👎 <span class="dislike-count">2</span></button>
-                            </div>
-                            <button onclick="toggleComments(this)" class="hover:text-amber-400 transition">💬 Comments (<span class="comment-count">3</span>)</button>
-                        </div>
-                        <!-- Comment Box Section -->
-                        <div class="comment-section hidden space-y-2 pt-2 border-t border-white/5">
-                            <div class="comment-list space-y-1 text-[11px] text-gray-300">
-                                <div class="bg-black/30 p-2 rounded-lg"><b>Taro:</b> Amazing to see our dates match!</div>
-                                <div class="bg-black/30 p-2 rounded-lg"><b>Elena:</b> Truly a cosmic mirror!</div>
-                            </div>
-                            <div class="flex space-x-2 pt-1">
-                                <input type="text" placeholder="Write a comment..." class="comment-input flex-1 bg-black/40 border border-brandBorder rounded-lg px-3 py-1.5 text-[11px] text-white focus:outline-none focus:border-amber-500">
-                                <button onclick="addComment(this)" class="px-3 py-1.5 rounded-lg bg-amber-500 text-black text-[11px] font-semibold">Post</button>
+                <!-- Sample Post Card 1 -->
+                <div class="glass-panel p-6 rounded-3xl shadow-2xl space-y-5">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-stone-700 to-stone-500 flex items-center justify-center text-white font-bold text-base shadow">ER</div>
+                            <div>
+                                <h4 class="text-base font-bold text-white">Elena Rostova <span class="text-xs text-goldAccent font-normal ml-2">98.4% Match</span></h4>
+                                <p class="text-xs text-gray-400">Vienna, Austria • Chrono-Birth Twin</p>
                             </div>
                         </div>
+                        <span class="text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full font-semibold">Verified Match</span>
                     </div>
-                    <div class="flex space-x-2 pt-1">
-                        <button onclick="openModal('chatModal')" class="flex-1 py-2 rounded-xl bg-amber-500 text-black text-xs font-semibold hover:opacity-90 transition shadow-md">Live Chat</button>
-                        <button onclick="openModal('videoCallModal')" class="px-3.5 py-2 rounded-xl bg-white/5 border border-brandBorder text-xs text-white hover:bg-white/10 transition">Call</button>
-                    </div>
-                </div>
+                    
+                    <p class="text-sm text-gray-200 leading-relaxed bg-black/40 p-4 rounded-2xl border border-white/5">
+                        Thrilled to be synchronized with the global community here! The facial geometry metrics and birth timeline alignment are astonishingly precise. ✨
+                    </p>
 
-                <!-- Match Card 2 -->
-                <div class="glass-card p-5 rounded-2xl border border-brandBorder hover:border-amber-500/50 transition duration-300 shadow-xl space-y-4">
-                    <div class="flex items-center space-x-4">
-                        <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-700 to-amber-900 flex items-center justify-center text-white font-bold text-base shadow-md">TK</div>
-                        <div>
-                            <h4 class="text-sm font-semibold text-white">Taro Kael <span class="text-xs font-normal text-amber-400 ml-1">96.8% Match</span></h4>
-                            <p class="text-xs text-gray-400">Kyoto, Japan • Facial Geometry Match</p>
-                        </div>
-                    </div>
-                    <div class="bg-black/40 p-3.5 rounded-xl border border-white/5 text-xs text-gray-300 space-y-1.5 shadow-inner">
-                        <div class="flex justify-between"><span>Face Similarity:</span> <span class="text-amber-300 font-medium">98.5% (AI Verified)</span></div>
-                        <div class="flex justify-between"><span>Timeline Match:</span> <span class="text-amber-300 font-medium">Shared Zodiac & Era</span></div>
-                    </div>
                     <!-- Like, Dislike, Comment Interactions -->
-                    <div class="border-t border-brandBorder pt-3 space-y-3">
-                        <div class="flex items-center justify-between text-xs text-gray-400">
-                            <div class="flex space-x-4">
-                                <button onclick="handleLike(this)" class="hover:text-amber-400 transition flex items-center space-x-1">👍 <span class="like-count">89</span></button>
-                                <button onclick="handleDislike(this)" class="hover:text-red-400 transition flex items-center space-x-1">👎 <span class="dislike-count">1</span></button>
+                    <div class="border-t border-borderCol pt-4 space-y-4">
+                        <div class="flex items-center justify-between text-sm text-gray-300 font-medium">
+                            <div class="flex space-x-6">
+                                <button onclick="handleLike(this)" class="hover:text-goldAccent transition flex items-center space-x-1.5">👍 <span class="like-count">142</span></button>
+                                <button onclick="handleDislike(this)" class="hover:text-red-400 transition flex items-center space-x-1.5">👎 <span class="dislike-count">3</span></button>
                             </div>
-                            <button onclick="toggleComments(this)" class="hover:text-amber-400 transition">💬 Comments (<span class="comment-count">1</span>)</button>
+                            <button onclick="toggleComments(this)" class="hover:text-goldAccent transition">💬 Comments (<span class="comment-count">4</span>)</button>
                         </div>
+                        
                         <!-- Comment Box Section -->
-                        <div class="comment-section hidden space-y-2 pt-2 border-t border-white/5">
-                            <div class="comment-list space-y-1 text-[11px] text-gray-300">
-                                <div class="bg-black/30 p-2 rounded-lg"><b>Sophia:</b> Greetings from Stockholm!</div>
+                        <div class="comment-section hidden space-y-3 pt-3 border-t border-white/5">
+                            <div class="comment-list space-y-2 text-xs text-gray-300">
+                                <div class="bg-black/50 p-3 rounded-xl border border-white/5"><b>Taro Kael:</b> Absolute masterpiece of a platform!</div>
+                                <div class="bg-black/50 p-3 rounded-xl border border-white/5"><b>Elena:</b> Thank you Taro!</div>
                             </div>
-                            <div class="flex space-x-2 pt-1">
-                                <input type="text" placeholder="Write a comment..." class="comment-input flex-1 bg-black/40 border border-brandBorder rounded-lg px-3 py-1.5 text-[11px] text-white focus:outline-none focus:border-amber-500">
-                                <button onclick="addComment(this)" class="px-3 py-1.5 rounded-lg bg-amber-500 text-black text-[11px] font-semibold">Post</button>
+                            <div class="flex space-x-3 pt-2">
+                                <input type="text" placeholder="Write a public comment..." class="comment-input flex-1 bg-black/60 border border-borderCol rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-goldAccent">
+                                <button onclick="addComment(this)" class="px-5 py-2.5 rounded-xl bg-goldAccent text-black text-xs font-bold">Reply</button>
                             </div>
                         </div>
                     </div>
-                    <div class="flex space-x-2 pt-1">
-                        <button onclick="openModal('chatModal')" class="flex-1 py-2 rounded-xl bg-amber-500 text-black text-xs font-semibold hover:opacity-90 transition shadow-md">Live Chat</button>
-                        <button onclick="openModal('videoCallModal')" class="px-3.5 py-2 rounded-xl bg-white/5 border border-brandBorder text-xs text-white hover:bg-white/10 transition">Call</button>
+
+                    <!-- Call & Chat Actions -->
+                    <div class="flex space-x-3 pt-2">
+                        <button onclick="openModal('chatModal')" class="flex-1 py-3 rounded-xl bg-goldAccent text-black text-xs font-bold hover:opacity-90 transition shadow">Open Direct Chat</button>
+                        <button onclick="openModal('videoCallModal')" class="px-5 py-3 rounded-xl bg-cardBg border border-borderCol text-xs text-white hover:bg-gray-800 transition">Video Call</button>
                     </div>
                 </div>
 
             </div>
+
         </div>
     </main>
 
-    <!-- Modals Section -->
+    <!-- Modals Section (Fully Functional Interactive Popups) -->
 
-    <!-- Profile Creation Modal -->
-    <div id="profileModal" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4 z-50">
-        <div class="glass-card max-w-md w-full p-6 rounded-2xl border border-brandBorder relative shadow-2xl">
-            <button onclick="closeModal('profileModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">&times;</button>
-            <h3 class="text-lg font-bold text-white mb-4">Create Synchronized Profile</h3>
-            <div class="space-y-3">
-                <input type="text" placeholder="Full Name" class="w-full bg-black/40 border border-brandBorder rounded-xl px-4 py-2.5 text-xs text-white focus:border-amber-500 outline-none">
-                <input type="date" class="w-full bg-black/40 border border-brandBorder rounded-xl px-4 py-2.5 text-xs text-white focus:border-amber-500 outline-none">
-                <input type="file" class="w-full bg-black/40 border border-brandBorder rounded-xl p-2.5 text-xs text-gray-400">
-                <button onclick="alert('Profile saved & AI facial sync initialized!'); closeModal('profileModal');" class="w-full py-2.5 rounded-xl bg-amber-500 text-black font-semibold text-xs mt-2 shadow-lg">Save & Run AI Match</button>
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="fixed inset-0 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+        <div class="glass-panel max-w-lg w-full p-8 rounded-3xl relative shadow-2xl space-y-6">
+            <button onclick="closeModal('settingsModal')" class="absolute top-6 right-6 text-gray-400 hover:text-white text-xl">&times;</button>
+            <h3 class="text-xl font-bold text-white">Account & System Settings</h3>
+            <div class="space-y-4 text-sm text-gray-300">
+                <div class="flex justify-between items-center bg-cardBg p-4 rounded-2xl border border-borderCol">
+                    <span>End-to-End Quantum Encryption</span>
+                    <span class="text-emerald-400 font-semibold">Active ✓</span>
+                </div>
+                <div class="flex justify-between items-center bg-cardBg p-4 rounded-2xl border border-borderCol">
+                    <span>Facial Vector Privacy Mode</span>
+                    <button onclick="alert('Privacy mode toggled!')" class="px-4 py-1.5 rounded-xl bg-goldAccent text-black font-bold text-xs">Configure</button>
+                </div>
+                <div class="flex justify-between items-center bg-cardBg p-4 rounded-2xl border border-borderCol">
+                    <span>Chrono-Birth Timeline Sync</span>
+                    <span class="text-goldAccent font-semibold">Enabled</span>
+                </div>
             </div>
+            <button onclick="closeModal('settingsModal')" class="w-full py-3.5 rounded-2xl bg-goldAccent text-black font-bold text-sm">Save Changes</button>
         </div>
     </div>
 
     <!-- Live Chat Modal -->
-    <div id="chatModal" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4 z-50">
-        <div class="glass-card max-w-lg w-full p-6 rounded-2xl border border-brandBorder relative flex flex-col h-[420px] shadow-2xl">
-            <button onclick="closeModal('chatModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">&times;</button>
-            <h3 class="text-base font-bold text-white mb-3">Live Global Friendship Chat</h3>
-            <div class="flex-1 bg-black/40 border border-brandBorder rounded-xl p-3 overflow-y-auto space-y-2.5 text-xs">
-                <div class="bg-white/5 p-2.5 rounded-xl max-w-[80%] border border-white/5">Elena: Hello! Our birth timeline matches perfectly!</div>
-                <div class="bg-amber-500/20 text-amber-200 p-2.5 rounded-xl max-w-[80%] ml-auto border border-amber-500/20">You: Hi Elena! Amazing to connect globally.</div>
+    <div id="chatModal" class="fixed inset-0 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+        <div class="glass-panel max-w-xl w-full p-6 rounded-3xl relative flex flex-col h-[500px] shadow-2xl">
+            <button onclick="closeModal('chatModal')" class="absolute top-5 right-5 text-gray-400 hover:text-white text-xl">&times;</button>
+            <h3 class="text-lg font-bold text-white mb-4">Direct Global Encrypted Chat</h3>
+            <div class="flex-1 bg-black/50 border border-borderCol rounded-2xl p-4 overflow-y-auto space-y-3 text-xs">
+                <div class="bg-cardBg p-3 rounded-2xl max-w-[80%] border border-borderCol">Elena: Hello! Our birth timeline matches perfectly!</div>
+                <div class="bg-goldAccent/20 text-goldLight p-3 rounded-2xl max-w-[80%] ml-auto border border-goldAccent/30">You: Hi Elena! Amazing to connect globally.</div>
             </div>
-            <div class="mt-3 flex space-x-2">
-                <input type="text" placeholder="Type a message..." class="flex-1 bg-black/40 border border-brandBorder rounded-xl px-4 py-2.5 text-xs text-white focus:border-amber-500 outline-none">
-                <button onclick="alert('Message sent live!')" class="px-4 py-2.5 rounded-xl bg-amber-500 text-black text-xs font-semibold shadow-md">Send</button>
+            <div class="mt-4 flex space-x-3">
+                <input type="text" placeholder="Type a secure message..." class="flex-1 bg-black/60 border border-borderCol rounded-2xl px-4 py-3 text-xs text-white focus:border-goldAccent focus:outline-none">
+                <button onclick="alert('Message transmitted live!')" class="px-6 py-3 rounded-2xl bg-goldAccent text-black text-xs font-bold">Send</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Go Live / Live Stream Modal -->
+    <div id="liveStreamModal" class="fixed inset-0 bg-black/90 backdrop-blur-lg hidden items-center justify-center p-4 z-50">
+        <div class="glass-panel max-w-md w-full p-8 rounded-3xl text-center relative shadow-2xl space-y-6">
+            <button onclick="closeModal('liveStreamModal')" class="absolute top-6 right-6 text-gray-400 hover:text-white text-xl">&times;</button>
+            <div class="w-24 h-24 mx-auto rounded-full bg-red-600/20 border border-red-500/40 flex items-center justify-center animate-pulse shadow-xl">
+                <span class="text-4xl">🔴</span>
+            </div>
+            <h3 class="text-xl font-bold text-white">Broadcast Live Worldwide</h3>
+            <input type="text" id="liveStreamTitle" placeholder="Enter Live Stream Title..." class="w-full bg-black/60 border border-borderCol rounded-2xl px-4 py-3 text-sm text-white focus:border-goldAccent focus:outline-none">
+            <button onclick="startLiveBroadcast()" class="w-full py-4 rounded-2xl bg-red-600 hover:bg-red-500 text-white font-extrabold text-sm shadow-lg">Start Live Stream Now</button>
         </div>
     </div>
 
     <!-- Video Call Modal -->
     <div id="videoCallModal" class="fixed inset-0 bg-black/90 backdrop-blur-lg hidden items-center justify-center p-4 z-50">
-        <div class="glass-card max-w-md w-full p-6 rounded-2xl border border-brandBorder text-center relative shadow-2xl">
-            <button onclick="closeModal('videoCallModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">&times;</button>
-            <div class="w-24 h-24 mx-auto rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center mb-4 animate-glow shadow-xl">
-                <svg class="w-10 h-10 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+        <div class="glass-panel max-w-md w-full p-8 rounded-3xl text-center relative shadow-2xl space-y-6">
+            <button onclick="closeModal('videoCallModal')" class="absolute top-6 right-6 text-gray-400 hover:text-white text-xl">&times;</button>
+            <div class="w-24 h-24 mx-auto rounded-full bg-goldAccent/20 border border-goldAccent/40 flex items-center justify-center shadow-xl animate-float">
+                <span class="text-4xl">📹</span>
             </div>
-            <h3 class="text-lg font-bold text-white mb-1">Encrypted Video Link</h3>
-            <p class="text-xs text-gray-400 mb-6">Establishing P2P connection with synchronized match...</p>
-            <button onclick="closeModal('videoCallModal')" class="w-full py-2.5 rounded-xl bg-red-600 text-white font-semibold text-xs shadow-lg">End Call</button>
+            <h3 class="text-xl font-bold text-white">Secure P2P Video Link</h3>
+            <p class="text-xs text-gray-400">Establishing encrypted video stream with synchronized peer...</p>
+            <button onclick="closeModal('videoCallModal')" class="w-full py-4 rounded-2xl bg-red-600 text-white font-bold text-sm">End Video Call</button>
         </div>
     </div>
 
-    <!-- Fully Functional Global Reels & Video Stream Modal -->
+    <!-- Reels & Video Stream Modal -->
     <div id="reelsModal" class="fixed inset-0 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4 z-50">
-        <div class="glass-card max-w-md w-full p-6 rounded-2xl border border-brandBorder relative shadow-2xl space-y-4">
-            <button onclick="closeModal('reelsModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">&times;</button>
-            <h3 class="text-lg font-bold text-white flex items-center space-x-2">
-                <span>📹</span> <span>Global Reels & Live Stream</span>
-            </h3>
-            <p class="text-xs text-gray-400">Explore and upload short video reflections from matched peers worldwide.</p>
-            
-            <!-- Upload Reel Form -->
-            <div class="bg-black/40 p-3.5 rounded-xl border border-brandBorder space-y-2">
-                <h4 class="text-xs font-semibold text-amber-400">Upload New Reel</h4>
-                <input type="text" id="reelTitleInput" placeholder="Reel Title or Tag (e.g. Vienna Chrono Twin)" class="w-full bg-black/60 border border-brandBorder rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
-                <input type="text" id="reelVideoUrlInput" placeholder="Video Link (e.g. https://...)" class="w-full bg-black/60 border border-brandBorder rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
-                <button onclick="uploadReel()" class="w-full py-2 rounded-xl bg-amber-500 text-black text-xs font-semibold shadow-md hover:opacity-90 transition">Publish Reel Live</button>
+        <div class="glass-panel max-w-md w-full p-8 rounded-3xl relative shadow-2xl space-y-6">
+            <button onclick="closeModal('reelsModal')" class="absolute top-6 right-6 text-gray-400 hover:text-white text-xl">&times;</button>
+            <h3 class="text-xl font-bold text-white">Reels & Video Center</h3>
+            <div class="bg-black/50 p-4 rounded-2xl border border-borderCol space-y-3">
+                <h4 class="text-xs font-bold text-goldAccent uppercase">Upload New Reel</h4>
+                <input type="text" id="reelTitleInput" placeholder="Reel Title or Tag..." class="w-full bg-black/60 border border-borderCol rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-goldAccent">
+                <button onclick="uploadReel()" class="w-full py-3 rounded-xl bg-goldAccent text-black font-bold text-xs">Publish Reel Live</button>
             </div>
-
-            <!-- Reels Feed Stream -->
-            <div id="reelsFeedContainer" class="space-y-3 max-h-64 overflow-y-auto no-scrollbar">
-                <div class="bg-black/50 p-3 rounded-xl border border-white/5 space-y-2">
-                    <div class="flex justify-between items-center text-xs">
-                        <span class="font-semibold text-white">Elena Rostova</span>
-                        <span class="text-[10px] text-amber-400">98% Match</span>
-                    </div>
-                    <div class="w-full h-32 bg-stone-900 rounded-lg flex items-center justify-center border border-brandBorder text-xs text-amber-300 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-amber-600/20 to-transparent"></div>
-                        <span>▶ Playing Chrono-Birth Reflection #1</span>
-                    </div>
-                    <div class="flex justify-between text-xs text-gray-400 pt-1">
-                        <button onclick="handleLike(this)" class="hover:text-amber-400">👍 <span class="like-count">45</span></button>
-                        <button onclick="handleDislike(this)" class="hover:text-red-400">👎 <span class="dislike-count">0</span></button>
-                        <span>💬 4 Comments</span>
-                    </div>
+            <div id="reelsFeedContainer" class="space-y-3 max-h-48 overflow-y-auto no-scrollbar">
+                <div class="bg-cardBg p-3.5 rounded-2xl border border-white/5 text-xs text-goldLight flex justify-between items-center">
+                    <span>▶ Chrono-Birth Reflection #1 (Elena)</span>
+                    <span class="text-emerald-400">Live</span>
                 </div>
             </div>
-
-            <button onclick="closeModal('reelsModal')" class="w-full py-2.5 rounded-xl bg-white/5 border border-brandBorder text-xs text-white hover:bg-white/10 transition">Close Reels</button>
+            <button onclick="closeModal('reelsModal')" class="w-full py-3 rounded-2xl bg-cardBg border border-borderCol text-xs text-white">Close Center</button>
         </div>
     </div>
 
-    <!-- Pages & Groups Modal -->
-    <div id="groupModal" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4 z-50">
-        <div class="glass-card max-w-md w-full p-6 rounded-2xl border border-brandBorder relative shadow-2xl">
-            <button onclick="closeModal('groupModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">&times;</button>
-            <h3 class="text-lg font-bold text-white mb-3">Pages & Groups</h3>
-            <p class="text-xs text-gray-400 mb-4">Join communities based on shared cosmic and facial geometry traits.</p>
-            <div class="space-y-2 text-left mb-4">
-                <div class="bg-white/5 p-3 rounded-xl border border-brandBorder text-xs flex justify-between items-center">
-                    <span>Chrono-Birth Pioneers</span>
-                    <button onclick="alert('Joined group!')" class="px-3 py-1 rounded-lg bg-amber-500 text-black font-semibold shadow-sm">Join</button>
-                </div>
-                <div class="bg-white/5 p-3 rounded-xl border border-brandBorder text-xs flex justify-between items-center">
-                    <span>Facial Mirror Alliance</span>
-                    <button onclick="alert('Joined group!')" class="px-3 py-1 rounded-lg bg-amber-500 text-black font-semibold shadow-sm">Join</button>
-                </div>
+    <!-- Create Group Modal -->
+    <div id="groupModal" class="fixed inset-0 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+        <div class="glass-panel max-w-md w-full p-8 rounded-3xl relative shadow-2xl space-y-6">
+            <button onclick="closeModal('groupModal')" class="absolute top-6 right-6 text-gray-400 hover:text-white text-xl">&times;</button>
+            <h3 class="text-xl font-bold text-white">Create Community Group</h3>
+            <input type="text" id="groupNameInput" placeholder="Group Name (e.g. Chrono Pioneers)" class="w-full bg-black/60 border border-borderCol rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-goldAccent">
+            <button onclick="createGroup()" class="w-full py-3.5 rounded-2xl bg-goldAccent text-black font-bold text-sm">Create Group</button>
+        </div>
+    </div>
+
+    <!-- Create Official Page Modal -->
+    <div id="pageModal" class="fixed inset-0 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+        <div class="glass-panel max-w-md w-full p-8 rounded-3xl relative shadow-2xl space-y-6">
+            <button onclick="closeModal('pageModal')" class="absolute top-6 right-6 text-gray-400 hover:text-white text-xl">&times;</button>
+            <h3 class="text-xl font-bold text-white">Create Official Page</h3>
+            <input type="text" id="pageNameInput" placeholder="Page Name (e.g. Official Mirror Portal)" class="w-full bg-black/60 border border-borderCol rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-goldAccent">
+            <button onclick="createPage()" class="w-full py-3.5 rounded-2xl bg-goldAccent text-black font-bold text-sm">Publish Page</button>
+        </div>
+    </div>
+
+    <!-- Founder's Note Modal -->
+    <div id="founderModal" class="fixed inset-0 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+        <div class="glass-panel max-w-md w-full p-8 rounded-3xl relative text-center shadow-2xl space-y-6">
+            <button onclick="closeModal('founderModal')" class="absolute top-6 right-6 text-gray-400 hover:text-white text-xl">&times;</button>
+            <div class="w-20 h-20 mx-auto rounded-full p-1 bg-gradient-to-tr from-goldAccent to-yellow-200 shadow-xl flex items-center justify-center text-black font-black text-xl">
+                BD
             </div>
-            <button onclick="closeModal('groupModal')" class="w-full py-2.5 rounded-xl bg-white/5 border border-brandBorder text-xs text-white">Close</button>
+            <h3 class="text-xl font-bold text-white">Message from the Founder</h3>
+            <p class="text-xs text-goldAccent font-semibold">Bishwajit Dohutia • Creator of Mirror</p>
+            <p class="text-xs text-gray-300 font-light leading-relaxed">
+                "Mirror was conceived to establish genuine global human synchronization without traditional noise. Every feature here—from direct broadcasting to encrypted connections—is engineered for absolute professional excellence."
+            </p>
+            <button onclick="closeModal('founderModal')" class="w-full py-3 rounded-2xl bg-goldAccent text-black font-bold text-xs">Close</button>
         </div>
     </div>
 
@@ -412,164 +375,115 @@
         function openModal(id) { document.getElementById(id).classList.replace('hidden', 'flex'); }
         function closeModal(id) { document.getElementById(id).classList.replace('flex', 'hidden'); }
 
-        // Live Counter Simulation
-        let count = 1428;
-        setInterval(() => {
-            count += Math.floor(Math.random() * 3) - 1;
-            document.getElementById('liveCounter').innerText = `Live: ${count} Active Matches`;
-        }, 4000);
-
         // Search Friends Logic
         function searchFriends() {
             let input = document.getElementById('friendSearchInput').value.toLowerCase();
-            let items = document.querySelectorAll('.friend-item');
-            items.forEach(item => {
+            document.querySelectorAll('.friend-item').forEach(item => {
                 let name = item.getAttribute('data-name').toLowerCase();
                 let loc = item.getAttribute('data-loc').toLowerCase();
-                if (name.includes(input) || loc.includes(input)) {
-                    item.style.display = 'flex';
-                } else {
-                    item.style.display = 'none';
-                }
+                item.style.display = (name.includes(input) || loc.includes(input)) ? 'flex' : 'none';
             });
         }
 
-        // Toggle Add Friend Button State
-        function toggleFriend(btn) {
-            if (btn.innerText.includes('+ Add')) {
-                btn.innerHTML = 'Sent &#10003;';
-                btn.className = 'px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[11px] font-semibold transition';
-            } else {
-                btn.innerHTML = '+ Add';
-                btn.className = 'px-2.5 py-1 rounded-lg bg-amber-500 text-black text-[11px] font-semibold hover:opacity-90 transition';
+        // Add / Accept / Reject Friend Action Logic
+        function handleFriendAction(btn, action) {
+            let parent = btn.parentElement;
+            if (action === 'add') {
+                parent.innerHTML = `<span class="text-xs text-goldAccent font-bold px-2 py-1 bg-goldAccent/10 rounded-xl border border-goldAccent/20">Request Sent ✓</span>`;
+            } else if (action === 'accept') {
+                parent.innerHTML = `<span class="text-xs text-emerald-400 font-bold px-2 py-1 bg-emerald-500/10 rounded-xl border border-emerald-500/20">Connected ✓</span>`;
+            } else if (action === 'reject') {
+                parent.closest('.friend-item').style.opacity = '0.3';
+                setTimeout(() => parent.closest('.friend-item').remove(), 400);
             }
         }
 
-        // Like Button Functionality
+        // Like / Dislike / Comments Logic
         function handleLike(btn) {
             let countSpan = btn.querySelector('.like-count');
-            let current = parseInt(countSpan.innerText);
-            if (!btn.classList.contains('liked')) {
-                countSpan.innerText = current + 1;
-                btn.classList.add('liked', 'text-amber-400');
-            } else {
-                countSpan.innerText = current - 1;
-                btn.classList.remove('liked', 'text-amber-400');
-            }
+            countSpan.innerText = parseInt(countSpan.innerText) + 1;
+            btn.classList.add('text-goldAccent');
         }
 
-        // Dislike Button Functionality
         function handleDislike(btn) {
             let countSpan = btn.querySelector('.dislike-count');
-            let current = parseInt(countSpan.innerText);
-            if (!btn.classList.contains('disliked')) {
-                countSpan.innerText = current + 1;
-                btn.classList.add('disliked', 'text-red-400');
-            } else {
-                countSpan.innerText = current - 1;
-                btn.classList.remove('disliked', 'text-red-400');
-            }
+            countSpan.innerText = parseInt(countSpan.innerText) + 1;
+            btn.classList.add('text-red-400');
         }
 
-        // Toggle Comments Section Visibility
         function toggleComments(btn) {
-            let card = btn.closest('.glass-card');
-            let section = card.querySelector('.comment-section');
-            section.classList.toggle('hidden');
+            btn.closest('.glass-panel').querySelector('.comment-section').classList.toggle('hidden');
         }
 
-        // Add Comment Functionality
         function addComment(btn) {
-            let card = btn.closest('.glass-card');
+            let card = btn.closest('.glass-panel');
             let input = card.querySelector('.comment-input');
-            let commentText = input.value.trim();
-            if (!commentText) return;
-
+            if(!input.value.trim()) return;
             let list = card.querySelector('.comment-list');
-            let newComment = document.createElement('div');
-            newComment.className = 'bg-black/30 p-2 rounded-lg';
-            newComment.innerHTML = `<b>You:</b> ${commentText}`;
-            list.appendChild(newComment);
-
+            list.innerHTML += `<div class="bg-black/50 p-3 rounded-xl border border-white/5"><b>You:</b> ${input.value}</div>`;
             let countSpan = card.querySelector('.comment-count');
             countSpan.innerText = parseInt(countSpan.innerText) + 1;
-
             input.value = '';
-        }
-
-        // Upload Reel Functionality
-        function uploadReel() {
-            let title = document.getElementById('reelTitleInput').value.trim();
-            if (!title) {
-                alert('Please enter a reel title or description!');
-                return;
-            }
-
-            let container = document.getElementById('reelsFeedContainer');
-            let reelCard = document.createElement('div');
-            reelCard.className = 'bg-black/50 p-3 rounded-xl border border-white/5 space-y-2';
-            reelCard.innerHTML = `
-                <div class="flex justify-between items-center text-xs">
-                    <span class="font-semibold text-white">You (Founder)</span>
-                    <span class="text-[10px] text-amber-400">Just Uploaded</span>
-                </div>
-                <div class="w-full h-32 bg-stone-900 rounded-lg flex items-center justify-center border border-brandBorder text-xs text-amber-300 relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-tr from-amber-600/20 to-transparent"></div>
-                    <span>▶ ${title}</span>
-                </div>
-                <div class="flex justify-between text-xs text-gray-400 pt-1">
-                    <button onclick="handleLike(this)" class="hover:text-amber-400">👍 <span class="like-count">1</span></button>
-                    <button onclick="handleDislike(this)" class="hover:text-red-400">👎 <span class="dislike-count">0</span></button>
-                    <span>💬 0 Comments</span>
-                </div>
-            `;
-
-            container.prepend(reelCard);
-            document.getElementById('reelTitleInput').value = '';
-            document.getElementById('reelVideoUrlInput').value = '';
-            alert('Reel successfully published live to the global stream!');
         }
 
         // Create New Post Function
         function createNewPost() {
             let text = document.getElementById('userPostInput').value.trim();
-            if (!text) {
-                alert('Please write something to publish!');
-                return;
-            }
-
+            if(!text) { alert('Please enter text to publish.'); return; }
             let wrapper = document.getElementById('customPostsWrapper');
-            let postCard = document.createElement('div');
-            postCard.className = 'glass-card p-5 rounded-2xl border border-brandBorder shadow-xl space-y-4';
-            postCard.innerHTML = `
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-yellow-600 flex items-center justify-center text-black font-bold text-sm shadow-md">YOU</div>
-                    <div>
-                        <h4 class="text-sm font-semibold text-white">You (Founder / Creator)</h4>
-                        <p class="text-[10px] text-amber-400">Just Now • Synchronized Feed</p>
+            let newPost = document.createElement('div');
+            newPost.className = 'glass-panel p-6 rounded-3xl shadow-2xl space-y-5';
+            newPost.innerHTML = `
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-goldAccent to-yellow-600 flex items-center justify-center text-black font-bold text-base shadow">BD</div>
+                        <div>
+                            <h4 class="text-base font-bold text-white">Bishwajit Dohutia <span class="text-xs text-goldAccent font-normal ml-2">Founder</span></h4>
+                            <p class="text-xs text-gray-400">Just Now • Global Sync Stream</p>
+                        </div>
                     </div>
                 </div>
-                <p class="text-xs text-gray-200 leading-relaxed bg-black/30 p-3.5 rounded-xl border border-white/5">${text}</p>
-                <div class="border-t border-brandBorder pt-3 space-y-3">
-                    <div class="flex items-center justify-between text-xs text-gray-400">
-                        <div class="flex space-x-4">
-                            <button onclick="handleLike(this)" class="hover:text-amber-400 transition flex items-center space-x-1">👍 <span class="like-count">0</span></button>
-                            <button onclick="handleDislike(this)" class="hover:text-red-400 transition flex items-center space-x-1">👎 <span class="dislike-count">0</span></button>
-                        </div>
-                        <button onclick="toggleComments(this)" class="hover:text-amber-400 transition">💬 Comments (<span class="comment-count">0</span>)</button>
-                    </div>
-                    <div class="comment-section hidden space-y-2 pt-2 border-t border-white/5">
-                        <div class="comment-list space-y-1 text-[11px] text-gray-300"></div>
-                        <div class="flex space-x-2 pt-1">
-                            <input type="text" placeholder="Write a comment..." class="comment-input flex-1 bg-black/40 border border-brandBorder rounded-lg px-3 py-1.5 text-[11px] text-white focus:outline-none focus:border-amber-500">
-                            <button onclick="addComment(this)" class="px-3 py-1.5 rounded-lg bg-amber-500 text-black text-[11px] font-semibold">Post</button>
-                        </div>
-                    </div>
+                <p class="text-sm text-gray-200 leading-relaxed bg-black/40 p-4 rounded-2xl border border-white/5">${text}</p>
+                <div class="flex space-x-6 text-sm text-gray-300 font-medium pt-2">
+                    <button onclick="handleLike(this)" class="hover:text-goldAccent transition">👍 <span class="like-count">0</span></button>
+                    <button onclick="handleDislike(this)" class="hover:text-red-400 transition">👎 <span class="dislike-count">0</span></button>
                 </div>
             `;
-
-            wrapper.prepend(postCard);
+            wrapper.prepend(newPost);
             document.getElementById('userPostInput').value = '';
+        }
+
+        // Start Live Broadcast Simulation
+        function startLiveBroadcast() {
+            let title = document.getElementById('liveStreamTitle').value.trim() || 'Global Live Stream';
+            alert(`🔴 LIVE NOW: "${title}" is successfully broadcasting worldwide!`);
+            closeModal('liveStreamModal');
+        }
+
+        // Upload Reel
+        function uploadReel() {
+            let title = document.getElementById('reelTitleInput').value.trim();
+            if(!title) return;
+            let container = document.getElementById('reelsFeedContainer');
+            container.innerHTML += `<div class="bg-cardBg p-3.5 rounded-2xl border border-white/5 text-xs text-goldLight flex justify-between items-center"><span>▶ ${title}</span><span class="text-emerald-400">Live</span></div>`;
+            document.getElementById('reelTitleInput').value = '';
+            alert('Reel published successfully!');
+        }
+
+        // Create Group
+        function createGroup() {
+            let name = document.getElementById('groupNameInput').value.trim();
+            if(!name) return;
+            alert(`Community Group "${name}" created successfully!`);
+            closeModal('groupModal');
+        }
+
+        // Create Page
+        function createPage() {
+            let name = document.getElementById('pageNameInput').value.trim();
+            if(!name) return;
+            alert(`Official Page "${name}" published successfully!`);
+            closeModal('pageModal');
         }
     </script>
 </body>
